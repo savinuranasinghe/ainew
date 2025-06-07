@@ -1,0 +1,151 @@
+{
+  "name": "ai-image-upscaler",
+  "version": "1.0.0",
+  "description": "AI-powered image upscaler using SwinIR - Professional quality 4x upscaling",
+  "main": "main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-mac": "electron-builder --mac",
+    "build-win": "electron-builder --win",
+    "build-all": "electron-builder --mac --win",
+    "dist": "electron-builder --publish=never",
+    "pack": "electron-builder --dir"
+  },
+  "keywords": ["electron", "ai", "image", "upscaler", "swinir", "super-resolution"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "build": {
+    "appId": "com.yourname.ai-image-upscaler",
+    "productName": "AI Image Upscaler",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!python-backend/",
+      "!models/",
+      "!build/",
+      "!dist/",
+      "!**/*.md",
+      "!**/*.py",
+      "backend/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/",
+        "to": "backend/",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.graphics-design",
+      "icon": "assets/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "darkModeSupport": true,
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "identity": null
+    },
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "publisherName": "Your Name",
+      "verifyUpdateCodeSignature": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "menuCategory": "Graphics & Design",
+      "shortcutName": "AI Image Upscaler",
+      "uninstallDisplayName": "AI Image Upscaler",
+      "license": "assets/license.txt",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "perMachine": false,
+      "packElevateHelper": true
+    },
+    "dmg": {
+      "title": "AI Image Upscaler ${version}",
+      "icon": "assets/icon.icns",
+      "window": {
+        "width": 600,
+        "height": 400
+      },
+      "contents": [
+        {
+          "x": 150,
+          "y": 220,
+          "type": "file"
+        },
+        {
+          "x": 450,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable.${ext}"
+    },
+    "fileAssociations": [
+      {
+        "ext": "jpg",
+        "name": "JPEG Image",
+        "description": "Upscale with AI Image Upscaler",
+        "role": "Editor"
+      },
+      {
+        "ext": "jpeg",
+        "name": "JPEG Image", 
+        "description": "Upscale with AI Image Upscaler",
+        "role": "Editor"
+      },
+      {
+        "ext": "png",
+        "name": "PNG Image",
+        "description": "Upscale with AI Image Upscaler", 
+        "role": "Editor"
+      },
+      {
+        "ext": "bmp",
+        "name": "Bitmap Image",
+        "description": "Upscale with AI Image Upscaler",
+        "role": "Editor"
+      }
+    ]
+  }
+}

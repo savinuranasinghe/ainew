@@ -1,0 +1,22 @@
+# Build outputs
+dist/
+build/
+releases/
+electron-app/dist/
+electron-app/build/
+python-backend/dist/
+python-backend/build/
+
+# Dependencies
+node_modules/
+python-backend/venv/
+*.pyc
+__pycache__/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Lock files (optional)
+package-lock.json
+backend.spec
